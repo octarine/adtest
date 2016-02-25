@@ -1,0 +1,6 @@
+Django==1.9.2
+django-auth-ldap==1.2.7
+ldap3==1.0.4
+pyasn1==0.1.9
+pyldap==2.4.25
+wheel==0.29.0
