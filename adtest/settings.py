@@ -99,31 +99,34 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-AUTH_LDAP_SERVER_URI = "ldap://server:389"
-AUTH_LDAP_BIND_DN = "BINDDN"
-AUTH_LDAP_BIND_PASSWORD = "PASSWORD"
-AUTH_LDAP_USER_SEARCH = LDAPSearch("DC=demo,DC=demo", ldap.SCOPE_SUBTREE, '(SAMAccountName=%(user)s)')
+AUTH_LDAP_SERVER_URI = "ldap://ec2-52-49-208-202.eu-west-1.compute.amazonaws.com:389"
+AUTH_LDAP_BIND_DN = "LIGHTHOUSE"
+AUTH_LDAP_BIND_PASSWORD = "HomeWork2016"
+AUTH_LDAP_USER_SEARCH = LDAPSearch("CN=Users,DC=lighthouse,DC=dstl", ldap.SCOPE_SUBTREE, '(SAMAccountName=%(user)s)')
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch("CN=Users,DC=lighthouse,DC=dstl", ldap.SCOPE_SUBTREE, "(objectClass=top)")
 
 # Important set group type
-#AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()
+AUTH_LDAP_GROUP_TYPE = NestedActiveDirectoryGroupType()
 
 # Cache settings
 
-#AUTH_LDAP_CACHE_GROUPS = True
-#AUTH_LDAP_GROUP_CACHE_TIMEOUT = 300
+AUTH_LDAP_CACHE_GROUPS = True
+AUTH_LDAP_GROUP_CACHE_TIMEOUT = 300
 
 
 
 # User flags
 
-#AUTH_LDAP_USER_FLAGS_BY_GROUP = {
-#  "is_staff": "CN=dstl,DC=lighthouse,DC=dstl"
-#}
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    "is_active": "CN=dstl,CN=Users,DC=lighthouse,DC=dstl",
+    "is_staff": "CN=dstl,CN=Users,DC=lighthouse,DC=dstl",
+    "is_superuser": "CN=dstl,CN=Users,DC=lighthouse,DC=dstl",
+}
 
 # Group mirror
 
 # Important to match the group's permission
-#AUTH_LDAP_MIRROR_GROUPS = True
+AUTH_LDAP_MIRROR_GROUPS = True
 
 
 AUTH_LDAP_CONNECTION_OPTIONS = {
