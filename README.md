@@ -1,1 +1,1 @@
-# django-ldap-example
+# ADtest for django project
